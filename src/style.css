@@ -1,0 +1,68 @@
+div.login-page
+{
+    background-color: #343a3f;
+}
+div.login-card-body
+{
+    border-radius: 10px !important;
+}
+div.login-logo
+{
+    align-items: center;
+}
+button.btn-primary , button.btn-primary:hover
+{
+    background-color: rgb(3, 160, 137) !important;
+    border-color: rgb(3, 160, 137) !important;
+}
+.main-sidebar
+{
+    background-color: #343a3f !important;
+}
+a.nav-link.active
+{
+    background-color: rgb(3, 160, 137) !important;
+}
+div.content-wrapper
+{
+    background-color: white !important;
+}
+button.MuiFab-primary
+{
+    background-color: rgb(3, 160, 137) !important;
+}
+button.btn-circular
+{
+    border-radius: 50px;
+}
+div.Toastify__toast--success
+{
+    background-color: rgb(3, 160, 137) !important;
+
+}
+div.tui-image-editor-header-logo
+{
+    display: none;
+}
+div.tui-image-editor-header
+{
+    align-items: center;
+    align-content: center;
+    float:left !important;
+}
+@media screen and (max-width: 480px) {
+    ul.tui-image-editor-help-menu.top
+{
+    margin: 10%;
+    /* display: none; */
+}
+  }
+div.tui-image-editor-header-buttons
+{
+    float: left !important;
+}
+button.tui-image-editor-download-btn
+{
+    background-color: rgb(3, 160, 137) !important;
+    border-color: rgb(3, 160, 137) !important;
+}

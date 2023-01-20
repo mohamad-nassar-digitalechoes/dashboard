@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
-
+import {BrowserRouter as Router,Switch,Route, Redirect} from 'react-router-dom'
+import login from './Admin/login';
+import { useState } from 'react';
+import {ProtectedRoute, PublicRoute} from "./routes/routes";
+import { ToastContainer } from "react-toastify";
+import Dashboard from './Admin/dashbaord';
+import Admins from './Admin/admin';
+import Agencies from './Admin/agency';
+import Resizing from './Admin/resizing';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // eslint-disable-next-line
+  var [isAuth]=useState(false);
+  if(localStorage.getItem("admin-token") || sessionStorage.getItem("admin-token")) {isAuth=true;}
+  return [
+    <Router>
+       <ToastContainer />
+      <Switch>
+        <ProtectedRoute exact path="/" component={Dashboard} />
+        <PublicRoute exact path="/login" component={login} />
+        <ProtectedRoute isAuth={isAuth} path="/admin/dashboard" component={Dashboard} />
+        <ProtectedRoute role={["Admin"]} isAuth={isAuth} path="/admin/admins" component={Admins} />
+        <ProtectedRoute role={["Admin"]} isAuth={isAuth} path="/admin/agency" component={Agencies} />
+        <ProtectedRoute role={["Admin","Agency"]} isAuth={isAuth} path="/admin/brand" component={Dashboard} />
+        <ProtectedRoute isAuth={isAuth} path="/admin/users" component={Dashboard} />
+        <ProtectedRoute isAuth={isAuth} path="/admin/resizing" component={Resizing} />
+      </Switch>
+    </Router>
+    
+  ];
 }
 
 export default App;
