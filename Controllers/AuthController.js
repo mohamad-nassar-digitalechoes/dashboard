@@ -91,43 +91,6 @@ class AuthController {
     }
   }
 
-  static async alladmins(req, res) {
-    try {
-      const token = req.header("admin-token");
-      const verification = jwt.verify(token, "admin-token");
-      if(verification){
-        const role=await Admin.findById({_id:verification.id});
-        if(role.type!="Admin")
-        return res.status(405).json({
-          msg: "No access",
-        });
-      }
-      const admin = await Admin.find({type:"Admin"});
-      return res.status(200).json({
-        admins: admin,
-      });
-    } catch (error) {
-      return res.status(500).json({
-        msg:error.message
-      })
-    }
-  }
-
-  static async allagency(req, res) {
-    try {
-      const token = req.header("admin-token");
-      const verification = jwt.verify(token, "admin-token");
-      const admin = await Admin.find({type:"Agency"});
-      return res.status(200).json({
-        agencies: admin,
-      });
-    } catch (error) {
-      return res.status(500).json({
-        msg:error.message
-      })
-    }
-  }
-
 }
 
 module.exports = AuthController;
