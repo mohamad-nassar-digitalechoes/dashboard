@@ -18,7 +18,7 @@ function App() {
       <Switch>
         <ProtectedRoute exact path="/" component={Dashboard} />
         <PublicRoute exact path="/login" component={login} />
-        <ProtectedRoute isAuth={isAuth} path="/admin/dashboard" component={Dashboard} />
+        <ProtectedRoute isAuth={isAuth} path="/admin/blog" component={Dashboard} />
         <ProtectedRoute role={["Admin"]} isAuth={isAuth} path="/admin/admins" component={Admins} />
         <ProtectedRoute role={["Admin"]} isAuth={isAuth} path="/admin/agency" component={Agencies} />
         <ProtectedRoute role={["Admin","Agency"]} isAuth={isAuth} path="/admin/brand" component={Dashboard} />

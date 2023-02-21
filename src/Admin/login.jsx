@@ -48,10 +48,10 @@ export default function Login() {
         );      
         if (remember) {
           localStorage.setItem("admin-token", response.data["access-token"]);
-          return (window.location.href = "/admin/dashboard");
+          return (window.location.href = "/admin/blog");
         } else {
           sessionStorage.setItem("admin-token", response.data["access-token"]);
-          return (window.location.href = "/admin/dashboard");
+          return (window.location.href = "/admin/blog");
         }
       } catch (error) {
         AuthToken(error);

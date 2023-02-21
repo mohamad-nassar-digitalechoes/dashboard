@@ -34,6 +34,7 @@ function Myheader() {
     type: "",
     status: "",
   });
+  const [li,setLi]=useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -469,19 +470,51 @@ function Myheader() {
             role="menu"
             data-accordion="false"
           >
-            <li className="nav-item">
-              <NavLink
-                to="/admin/dashboard"
-                className="nav-link"
-                activeClassName="nav-link active"
-                exact
+            <li
+             onClick={()=>{setLi("aitools")}}
+                className={
+                  window.location.pathname === "/admin/blog" || li=="aitools"
+                    ? "nav-item  menu-open"
+                    : "nav-item"
+                }
               >
-                <i className="fas fa-chart-line"></i>
-                <p>Dashboard</p>
-              </NavLink>
-            </li>
+                <a
+                  href="#"
+                  className={
+                    window.location.pathname === "/admin/blog" || li=="aitools"
+                      ? "nav-link active"
+                      : "nav-link"
+                  }
+                >
+                  <i class="fas fa-cogs"></i>
+                  <p>
+                    All AI Tools
+                    <i className="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul
+               
+                  className="nav nav-treeview"
+                  style={
+                    window.location.pathname === "/admin/blog" || li=="aitools"
+                      ? { display: "block" }
+                      : { display: "none" }
+                  }
+                >
+                  <li className="nav-item">
+                    <NavLink
+                      to="/admin/blog"
+                      className="nav-link"
+                      activeClassName="nav-link active"
+                      exact
+                    >
+                      Blog & Article Writing
+                    </NavLink>
+                  </li>
+                </ul>
+              </li>
             {admin.type == "Admin" ? (
-              <li className="nav-item">
+              <li className="nav-item" onClick={()=>{setLi("")}}>
                 <NavLink
                   to="/admin/admins"
                   className="nav-link"
@@ -496,7 +529,7 @@ function Myheader() {
               ""
             )}
             {admin.type == "Admin" ? (
-              <li className="nav-item">
+              <li className="nav-item" onClick={()=>{setLi("")}}>
                 <NavLink
                   to="/admin/agency"
                   className="nav-link"
@@ -511,7 +544,7 @@ function Myheader() {
               ""
             )}
             {admin.type == "Admin" || admin.type == "Agency" ? (
-              <li className="nav-item">
+              <li className="nav-item" onClick={()=>{setLi("")}}>
                 <NavLink
                   to="/admin/brand"
                   className="nav-link"
@@ -528,7 +561,7 @@ function Myheader() {
             {admin.type == "Admin" ||
             admin.type == "Agency" ||
             admin.type == "Brand" ? (
-              <li className="nav-item">
+              <li className="nav-item" onClick={()=>{setLi("")}}>
                 <NavLink
                   to="/admin/users"
                   className="nav-link"
@@ -542,7 +575,7 @@ function Myheader() {
             ) : (
               ""
             )}
-            <li className="nav-item">
+            <li className="nav-item" onClick={()=>{setLi("")}}>
               <NavLink
                 to="/admin/resizing"
                 className="nav-link"
