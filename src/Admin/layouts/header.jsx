@@ -453,14 +453,6 @@ function Myheader() {
       </Form>
     </Modal>,
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
-      <div align="center">
-        <img
-          src={require("../../logo.png")}
-          style={{ opacity: "0.8" }}
-          className="mt-3 mb-3"
-          width="60%"
-        />
-      </div>
       <Divider />
       <div className="sidebar mt-3">
         <nav className="mt-2">
@@ -513,79 +505,6 @@ function Myheader() {
                   </li>
                 </ul>
               </li>
-            {admin.type == "Admin" ? (
-              <li className="nav-item" onClick={()=>{setLi("")}}>
-                <NavLink
-                  to="/admin/admins"
-                  className="nav-link"
-                  activeClassName="nav-link active"
-                  exact
-                >
-                  <i className="fas fa-user-secret"></i>
-                  <p>Admins</p>
-                </NavLink>
-              </li>
-            ) : (
-              ""
-            )}
-            {admin.type == "Admin" ? (
-              <li className="nav-item" onClick={()=>{setLi("")}}>
-                <NavLink
-                  to="/admin/agency"
-                  className="nav-link"
-                  activeClassName="nav-link active"
-                  exact
-                >
-                  <i className="fas fa-user-tie"></i>
-                  <p>Agencies</p>
-                </NavLink>
-              </li>
-            ) : (
-              ""
-            )}
-            {admin.type == "Admin" || admin.type == "Agency" ? (
-              <li className="nav-item" onClick={()=>{setLi("")}}>
-                <NavLink
-                  to="/admin/brand"
-                  className="nav-link"
-                  activeClassName="nav-link active"
-                  exact
-                >
-                  <i className="fas fa-copyright"></i>
-                  <p>Brands</p>
-                </NavLink>
-              </li>
-            ) : (
-              ""
-            )}
-            {admin.type == "Admin" ||
-            admin.type == "Agency" ||
-            admin.type == "Brand" ? (
-              <li className="nav-item" onClick={()=>{setLi("")}}>
-                <NavLink
-                  to="/admin/users"
-                  className="nav-link"
-                  activeClassName="nav-link active"
-                  exact
-                >
-                  <i className="fas fa-users"></i>
-                  <p>Users</p>
-                </NavLink>
-              </li>
-            ) : (
-              ""
-            )}
-            <li className="nav-item" onClick={()=>{setLi("")}}>
-              <NavLink
-                to="/admin/resizing"
-                className="nav-link"
-                activeClassName="nav-link active"
-                exact
-              >
-                <i className="fas fa-crop-alt"></i>
-                <p>Resizing</p>
-              </NavLink>
-            </li>
           </ul>
         </nav>
       </div>

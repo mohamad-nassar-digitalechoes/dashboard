@@ -31,21 +31,8 @@ function ProtectedRoute({isAuth:auth,component:Component,role:roles,...rest})
     },[])
     return(
         <Route exact {...rest} render={(props)=>{
-           
-            if(roles)
-            {
-                if(role!=""){
-                if(roles.includes(role)){
-                if(auth) return[<div className="wrapper"><Myheader /><div className='content-wrapper'><Component /></div></div>];
-                else return <Redirect to={{pathname:'/login', state:{from:props.location}}} /> 
-                }
-            
-                else return <Redirect to={{pathname:'/login', state:{from:props.location}}} /> 
-            }}
-            else{
             if(auth) return[<div className="wrapper"><Myheader /><div className='content-wrapper'><Component /></div></div>];
             else return <Redirect to={{pathname:'/login', state:{from:props.location}}} /> 
-            }
         }} />
     )
 }

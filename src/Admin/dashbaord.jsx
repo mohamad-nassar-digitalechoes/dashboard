@@ -50,37 +50,6 @@ export default function Dashboard() {
       setRel(false);
     }
   }
-  async function generateDescription(event) {
-    event.preventDefault();
-    const form = event.currentTarget;
-    event.preventDefault();
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-    if (form.checkValidity() === true) {
-      setRel(true);
-      const response = await fetch(MODEL_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${API_KEY}`,
-        },
-        body: JSON.stringify({
-          prompt: `Please generate an blog about ${blog}`,
-          max_tokens: 10,
-          n: 1,
-          stop: "\n",
-        }),
-      });
-
-      const data = await response.json();
-
-      setDescription(data.choices[0].text);
-      setRel(false);
-    }
-  }
     async function generateDescription1(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -136,9 +105,9 @@ export default function Dashboard() {
         <div>
           <br />
           {rel === false ? (
-            <button className="btn btn-primary m-3">Generate</button>
+            <button type="submit" className="btn btn-primary m-3">Generate</button>
           ) : (
-            <button type="submit" className="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               <Spinner animation="border" variant="light" />
             </button>
           )}
@@ -169,9 +138,9 @@ export default function Dashboard() {
         <div>
           <br />
           {rel === false ? (
-            <button className="btn btn-primary m-3">Generate</button>
+            <button type="submit" className="btn btn-primary m-3">Generate</button>
           ) : (
-            <button type="submit" className="btn btn-primary">
+            <button type="button" className="btn btn-primary">
               <Spinner animation="border" variant="light" />
             </button>
           )}
