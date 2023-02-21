@@ -34,7 +34,7 @@ function Myheader() {
     type: "",
     status: "",
   });
-  const [li,setLi]=useState("");
+  const [li, setLi] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -137,95 +137,6 @@ function Myheader() {
           </a>
         </li>
       </ul>
-
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <a
-            className="nav-link"
-            data-widget="fullscreen"
-            href="#"
-            role="button"
-          >
-            <i className="fas fa-expand-arrows-alt"></i>
-          </a>
-        </li>
-        <li className="nav-item">
-          <Tooltip title="Account settings">
-            <IconButton
-              onClick={handleClick}
-              size="small"
-              sx={{ ml: 2 }}
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-            >
-              <Avatar
-                sx={{ width: 37, height: 37, bgcolor: "rgb(3, 160, 137)" }}
-              >
-                {admin.first_name.charAt(0) + "" + admin.last_name.charAt(0)}
-              </Avatar>
-            </IconButton>
-          </Tooltip>
-          <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                "& .MuiAvatar-root": {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                },
-                "&:before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
-              },
-            }}
-            transformOrigin={{ horizontal: "right", vertical: "top" }}
-            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            <MenuItem
-              className="nav-link"
-              data-toggle="modal"
-              data-target="#profile"
-              href="#"
-              role="button"
-            >
-              <Avatar sx={{ bgcolor: "rgb(3, 160, 137)" }} /> Profile
-            </MenuItem>
-            <Divider />
-            <MenuItem
-              className="nav-link"
-              data-toggle="modal"
-              data-target="#exampleModal"
-              href="#"
-              role="button"
-            >
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              Logout
-            </MenuItem>
-          </Menu>
-        </li>
-      </ul>
     </nav>,
     <div
       className="modal fade"
@@ -267,106 +178,106 @@ function Myheader() {
       </div>
     </div>,
 
-    <div
-      className="modal fade"
-      id="profile"
-      tabIndex={-1}
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div className="modal-dialog modal-dialog-centered" role="document">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
-              Update Account
-            </h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <Form noValidate onSubmit={updateaccount}>
-            <div className="modal-body">
-              <Row className="mb-3">
-                <Form.Group
-                  as={Col}
-                  md="12"
-                  className="mb-3"
-                  controlId="validationCustom01"
-                >
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    name="name"
-                    onChange={(e) => {
-                      setName(e.target.value);
-                      console.log(name);
-                    }}
-                    required
-                    type="text"
-                    placeholder="Admin Name"
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please enter a name
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <br />
-                <Form.Group
-                  as={Col}
-                  md="12"
-                  controlId="validationCustomUsername"
-                >
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    name="password"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                    min="6"
-                    type="password"
-                    placeholder="Password"
-                  />
-                </Form.Group>
-                <br />
-                <Form.Group
-                  as={Col}
-                  md="12"
-                  className="mt-3"
-                  controlId="validationCustomUsername"
-                >
-                  <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control
-                    name="confirm"
-                    onChange={(e) => {
-                      setConfirm(e.target.value);
-                    }}
-                    min="6"
-                    type="password"
-                    placeholder="Confirm Password"
-                  />
-                </Form.Group>
-              </Row>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Ignore
-              </button>
-              <button type="submit" className="btn btn-primary">
-                Save Changes
-              </button>
-            </div>
-          </Form>
-        </div>
-      </div>
-    </div>,
+    // <div
+    //   className="modal fade"
+    //   id="profile"
+    //   tabIndex={-1}
+    //   role="dialog"
+    //   aria-labelledby="exampleModalLabel"
+    //   aria-hidden="true"
+    // >
+    //   <div className="modal-dialog modal-dialog-centered" role="document">
+    //     <div className="modal-content">
+    //       <div className="modal-header">
+    //         <h5 className="modal-title" id="exampleModalLabel">
+    //           Update Account
+    //         </h5>
+    //         <button
+    //           type="button"
+    //           className="close"
+    //           data-dismiss="modal"
+    //           aria-label="Close"
+    //         >
+    //           <span aria-hidden="true">&times;</span>
+    //         </button>
+    //       </div>
+    //       <Form noValidate onSubmit={updateaccount}>
+    //         <div className="modal-body">
+    //           <Row className="mb-3">
+    //             <Form.Group
+    //               as={Col}
+    //               md="12"
+    //               className="mb-3"
+    //               controlId="validationCustom01"
+    //             >
+    //               <Form.Label>Name</Form.Label>
+    //               <Form.Control
+    //                 name="name"
+    //                 onChange={(e) => {
+    //                   setName(e.target.value);
+    //                   console.log(name);
+    //                 }}
+    //                 required
+    //                 type="text"
+    //                 placeholder="Admin Name"
+    //               />
+    //               <Form.Control.Feedback type="invalid">
+    //                 Please enter a name
+    //               </Form.Control.Feedback>
+    //             </Form.Group>
+    //             <br />
+    //             <Form.Group
+    //               as={Col}
+    //               md="12"
+    //               controlId="validationCustomUsername"
+    //             >
+    //               <Form.Label>Password</Form.Label>
+    //               <Form.Control
+    //                 name="password"
+    //                 onChange={(e) => {
+    //                   setPassword(e.target.value);
+    //                 }}
+    //                 min="6"
+    //                 type="password"
+    //                 placeholder="Password"
+    //               />
+    //             </Form.Group>
+    //             <br />
+    //             <Form.Group
+    //               as={Col}
+    //               md="12"
+    //               className="mt-3"
+    //               controlId="validationCustomUsername"
+    //             >
+    //               <Form.Label>Confirm Password</Form.Label>
+    //               <Form.Control
+    //                 name="confirm"
+    //                 onChange={(e) => {
+    //                   setConfirm(e.target.value);
+    //                 }}
+    //                 min="6"
+    //                 type="password"
+    //                 placeholder="Confirm Password"
+    //               />
+    //             </Form.Group>
+    //           </Row>
+    //         </div>
+    //         <div className="modal-footer">
+    //           <button
+    //             type="button"
+    //             className="btn btn-secondary"
+    //             data-dismiss="modal"
+    //           >
+    //             Ignore
+    //           </button>
+    //           <button type="submit" className="btn btn-primary">
+    //             Save Changes
+    //           </button>
+    //         </div>
+    //       </Form>
+    //     </div>
+    //   </div>
+    // </div>,
 
     <Modal
       show={show}
@@ -453,6 +364,12 @@ function Myheader() {
       </Form>
     </Modal>,
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
+      <div align="center">
+        <div class="word">
+          <div class="word word-1"><h2 style={{ "fontWeight":"bold" }}>THE</h2></div>
+          <div class="word word-2"><h2 style={{ "fontWeight":"bold" }}>DASHBOARD</h2></div>
+        </div>
+      </div>
       <Divider />
       <div className="sidebar mt-3">
         <nav className="mt-2">
@@ -463,48 +380,49 @@ function Myheader() {
             data-accordion="false"
           >
             <li
-             onClick={()=>{setLi("aitools")}}
+              onClick={() => {
+                setLi("aitools");
+              }}
+              className={
+                window.location.pathname === "/admin/blog" || li == "aitools"
+                  ? "nav-item  menu-open"
+                  : "nav-item"
+              }
+            >
+              <a
+                href="#"
                 className={
-                  window.location.pathname === "/admin/blog" || li=="aitools"
-                    ? "nav-item  menu-open"
-                    : "nav-item"
+                  window.location.pathname === "/admin/blog" || li == "aitools"
+                    ? "nav-link active"
+                    : "nav-link"
                 }
               >
-                <a
-                  href="#"
-                  className={
-                    window.location.pathname === "/admin/blog" || li=="aitools"
-                      ? "nav-link active"
-                      : "nav-link"
-                  }
-                >
-                  <i class="fas fa-cogs"></i>
-                  <p>
-                    All AI Tools
-                    <i className="fas fa-angle-left right"></i>
-                  </p>
-                </a>
-                <ul
-               
-                  className="nav nav-treeview"
-                  style={
-                    window.location.pathname === "/admin/blog" || li=="aitools"
-                      ? { display: "block" }
-                      : { display: "none" }
-                  }
-                >
-                  <li className="nav-item">
-                    <NavLink
-                      to="/admin/blog"
-                      className="nav-link"
-                      activeClassName="nav-link active"
-                      exact
-                    >
-                      Blog & Article Writing
-                    </NavLink>
-                  </li>
-                </ul>
-              </li>
+                <i class="fas fa-cogs"></i>
+                <p>
+                  All AI Tools
+                  <i className="fas fa-angle-left right"></i>
+                </p>
+              </a>
+              <ul
+                className="nav nav-treeview"
+                style={
+                  window.location.pathname === "/admin/blog" || li == "aitools"
+                    ? { display: "block" }
+                    : { display: "none" }
+                }
+              >
+                <li className="nav-item">
+                  <NavLink
+                    to="/admin/blog"
+                    className="nav-link"
+                    activeClassName="nav-link active"
+                    exact
+                  >
+                    Blog & Article Writing
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
           </ul>
         </nav>
       </div>

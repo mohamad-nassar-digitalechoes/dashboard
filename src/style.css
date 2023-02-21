@@ -12,8 +12,8 @@ div.login-logo
 }
 button.btn-primary , button.btn-primary:hover
 {
-    background-color: rgb(3, 160, 137) !important;
-    border-color: rgb(3, 160, 137) !important;
+    background-color: #7B68EF !important;
+    border-color: #7B68EF !important;
 }
 .main-sidebar
 {
@@ -21,15 +21,21 @@ button.btn-primary , button.btn-primary:hover
 }
 a.nav-link.active
 {
-    background-color: rgb(3, 160, 137) !important;
+    /* background-color: #7B68EF !important; */
+    background-color: white !important;
+    border: 2px solid yellow !important;
 }
 a.nav-link:hover
 {
-    background-color: rgb(3, 160, 137) !important;
+    /* background-color: #7B68EF !important; */
+    background-color: rgb(235, 230, 230) !important;
+    border: 2px solid yellow !important;
 }
 a.nav-link
 {
     color: black !important;
+    background-color: white !important;
+    border: 2px solid yellow !important;
 }
 div.content-wrapper
 {
@@ -37,7 +43,7 @@ div.content-wrapper
 }
 button.MuiFab-primary
 {
-    background-color: rgb(3, 160, 137) !important;
+    background-color: #7B68EF !important;
 }
 button.btn-circular
 {
@@ -45,7 +51,7 @@ button.btn-circular
 }
 div.Toastify__toast--success
 {
-    background-color: rgb(3, 160, 137) !important;
+    background-color: #7B68EF !important;
 
 }
 div.tui-image-editor-header-logo
@@ -71,6 +77,22 @@ div.tui-image-editor-header-buttons
 }
 button.tui-image-editor-download-btn
 {
-    background-color: rgb(3, 160, 137) !important;
-    border-color: rgb(3, 160, 137) !important;
+    background-color: #7B68EF !important;
+    border-color: #7B68EF !important;
+}
+  
+  .word {
+    display: inline-block;
+    margin-top:  10px;
+    margin-bottom:  10px;
+    text-decoration: underline;
+    
+  }
+  
+  .word-1 {
+    transform: rotate(-90deg);
+  }
+.form-control
+{
+    border: 2px solid yellow !important;
 }
