@@ -15,8 +15,7 @@ export default function Dashboard() {
   const [validated, setValidated] = useState(false);
   const [validated1, setValidated1] = useState(false);
   const API_KEY = "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";
-  const MODEL_ENDPOINT =
-    "https://api.openai.com/v1/engines/davinci/completions";
+  const MODEL_ENDPOINT = "https:api.openai.com/v1/completions";
 
   async function generateDescription(event) {
     event.preventDefault();
@@ -29,7 +28,7 @@ export default function Dashboard() {
     setValidated(true);
     if (form.checkValidity() === true) {
       setRel(true);
-      const prompt = `Please generate a blog about ${blog} in english`;
+      const prompt = `Please write short blog post about ${blog} in english`;
       const response = await fetch(MODEL_ENDPOINT, {
         method: "POST",
         headers: {
@@ -37,10 +36,13 @@ export default function Dashboard() {
           Authorization: `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
+          model: 'text-davinci-001',
           prompt: prompt,
           max_tokens: 100,
-          n: 1,
-          stop: "\n",
+          temperature: 0.4,
+          top_p: 1.0,
+          frequency_penalty: 0.5,
+          presence_penalty: 0.0,
         }),
       });
 
@@ -48,6 +50,8 @@ export default function Dashboard() {
 
       setDescription(data.choices[0].text);
       setRel(false);
+
+
     }
   }
     async function generateDescription1(event) {
@@ -61,7 +65,7 @@ export default function Dashboard() {
     setValidated1(true);
     if (form.checkValidity() === true) {
       setRel(true);
-      const prompt = `Please generate a article about ${article} in english`;
+      const prompt = `Please write a short article about ${article} in english`;
       const response = await fetch(MODEL_ENDPOINT, {
         method: "POST",
         headers: {
@@ -69,10 +73,13 @@ export default function Dashboard() {
           Authorization: `Bearer ${API_KEY}`,
         },
         body: JSON.stringify({
+          model: 'text-davinci-001',
           prompt: prompt,
-          max_tokens: 10,
-          n: 1,
-          stop: "\n",
+          max_tokens: 100,
+          temperature: 0.4,
+          top_p: 1.0,
+          frequency_penalty: 0.5,
+          presence_penalty: 0.0,
         }),
       });
 
