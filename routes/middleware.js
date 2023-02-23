@@ -15,6 +15,7 @@ class middleware
                   });
             }
             const verification = jwt.verify(token, "admin-token");
+           
             if (!verification) {
                 return res.status(401).json({
                     status:401,
@@ -23,7 +24,7 @@ class middleware
             }
             const admin_id=verification.id;
             const admin=await Admin.findOne({_id:admin_id});
-            if(admin.status!="active")
+            if(!admin)
             {
                 return res.status(401).json({
                     status:401,

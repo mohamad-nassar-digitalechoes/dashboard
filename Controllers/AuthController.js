@@ -31,7 +31,7 @@ class AuthController {
 
   static async create(req, res) {
     try {
-      const { first_name, last_name, email, password, type, status } = req.body;
+      const { first_name, last_name, email, password, googleId } = req.body;
       const exist = await Admin.findOne({ email });
       if (exist) {
         return res.status(400).json({
@@ -42,14 +42,17 @@ class AuthController {
       let admin = new Admin({
         first_name,
         last_name,
-        email,
-        type,
-        status,
+        email:email,
         password: hashed,
+        googleId:googleId
+
       });
       await admin.save();
+      const id=admin.id;
+      const token = jwt.sign({ id: id }, "admin-token");
       return res.status(200).json({
         msg: "Admin has been created successfully",
+        "access-token": token
       });
     } catch (error) {
       return res.status(500).json({
@@ -78,6 +81,7 @@ class AuthController {
 
   static async info(req, res) {
     try {
+      console.log(req);
       const token = req.header("admin-token");
       const verification = jwt.verify(token, "admin-token");
       const admin = await Admin.findById({ _id: verification.id });

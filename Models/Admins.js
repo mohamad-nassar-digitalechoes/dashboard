@@ -28,13 +28,7 @@ const adminSchema=mongoose.Schema({
         trim:true,
         type:String
     },
-    type:{
-        required:true,
-        trim:true,
-        type:String
-    },
-    status:{
-        required:true,
+    googleId:{
         trim:true,
         type:String
     }
