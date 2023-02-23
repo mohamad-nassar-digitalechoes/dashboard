@@ -6,7 +6,32 @@ import "./../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js";
 import "./../dashboard/dist/js/adminlte.min.js";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Countries from "../countries";
+import Autocomplete from '@mui/material/Autocomplete';
+import { TextField,Box } from "@mui/material";
+import axios from "axios";
+import Middleware from "../Middleware/middleware";
+import AuthToken from "../Middleware/AuthToken";
 export default function Dashboard() {
+  const [brand,setBrand]=useState({
+    name:'',
+    industry:'',
+    slogan:'',
+    website:'',
+    address:'',
+    country:'',
+    state:'',
+    country:'',
+    city:'',
+    zip:'',
+    code:'',
+    phone:'',
+    email:''
+  });
+  const [brd,setBrd]=useState(false);
+  const [valbrand,setValbrand]=useState(false);
   const [blog, setBlog] = useState("");
   const [article, setArticle] = useState("");
   const [rel, setRel] = useState(false);
@@ -17,6 +42,35 @@ export default function Dashboard() {
   const API_KEY = "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";
   const MODEL_ENDPOINT = "https:api.openai.com/v1/completions";
 
+  async function submitbrand(event)
+  {
+    event.preventDefault();
+    const form = event.currentTarget;
+    event.preventDefault();
+    if (form.checkValidity() === false) {
+      event.stopPropagation();
+    }
+
+    setValbrand(true);
+    if (form.checkValidity() === true) {
+      const req={name:brand.name,industry:brand.industry,slogan:brand.slogan,website:brand.website,address:brand.address,country:brand.country,state:brand.state,city:brand.city,zip:brand.zip,phone:brand.code+""+brand.phone,email:brand.email};
+      await axios.post(`${Middleware.baseURL}/admin/brand/create`,req,{headers:Middleware.header}).then(()=>{
+        window.location.reload();
+      }).catch((error)=>{
+        AuthToken(error);
+      });
+    }
+  }
+  async function check()
+  {
+    await axios.post(`${Middleware.baseURL}/admin/brand/check`,{},{headers:Middleware.header}).then((response)=>{
+      if(response.data.status===200)
+      {
+        setBrd(true);
+      }
+      else setBrd(false);
+    });
+  }
   async function generateDescription(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -89,8 +143,190 @@ export default function Dashboard() {
       setRel(false);
     }
   }
-  return [
-    <div className="m-3">
+useEffect(()=>{
+  check();
+},[])
+return[
+  !brd? 
+  <fieldset>
+  <legend>General Information</legend>
+  <Form noValidate autoComplete="off" validated={valbrand} onSubmit={submitbrand}>
+    <Row>
+  <Form.Group className="mb-3" as={Col} md="12">
+      <Form.Control type="text" placeholder="Business name" required onChange={(e)=>{setBrand({
+        ...brand,
+        name:e.target.value
+      })}} />
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid name.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" className="mb-3">
+      <Form.Control type="text" placeholder="Industry" required onChange={(e)=>{setBrand({
+        ...brand,
+        industry:e.target.value
+      })}} />
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid industry.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" className="mb-3">
+      <Form.Control type="text" placeholder="Slogan" required onChange={(e)=>{setBrand({
+        ...brand,
+        slogan:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid slogan.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" className="mb-3">
+      <Form.Control type="text" placeholder="Website" required onChange={(e)=>{setBrand({
+        ...brand,
+        website:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid website.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" className="mb-3">
+      <Form.Control type="text" placeholder="Address" required onChange={(e)=>{setBrand({
+        ...brand,
+        address:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid address.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="6" className="mb-3">
+    <Autocomplete
+    
+  id="country-select-demo"
+  options={Countries.country}
+  getOptionLabel={(option) => option.name}
+  renderOption={(props, option) => (
+    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+      <img
+        loading="lazy"
+        width="20"
+        src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+        srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+        alt=""
+      />
+      {option.name} ({option.code})
+    </Box>
+  )}
+  renderInput={(params) => (
+    <TextField
+    onChange={(e)=>{setBrand({
+      ...brand,
+      country:e.target.value
+    })}}
+    required
+      {...params}
+      label="Choose a country"
+      inputProps={{
+        ...params.inputProps,
+        autoComplete: 'new-password', // disable autocomplete and autofill
+      }}
+    />
+  )}
+/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid country.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="6" className="mb-3">
+      <Form.Control type="text" placeholder="State" required style={{ "height":"60px" }} onChange={(e)=>{setBrand({
+        ...brand,
+        state:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid state.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="6" className="mb-3">
+      <Form.Control type="text" placeholder="City" required onChange={(e)=>{setBrand({
+        ...brand,
+        city:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid City.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="6" className="mb-3">
+      <Form.Control type="text" placeholder="Zip Code" required onChange={(e)=>{setBrand({
+        ...brand,
+        zip:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid zip code.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="3" className="mb-3">
+    <Autocomplete
+  id="country-select-demo"
+  options={Countries.country}
+  
+  getOptionLabel={(option) => option.dial_code}
+  renderOption={(props, option) => (
+    <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+      <img
+        loading="lazy"
+        width="20"
+        src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+        srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+        alt=""
+      />
+      {option.name} ({option.dial_code})
+    </Box>
+  )}
+  renderInput={(params) => (
+    <TextField
+    onChange={(e)=>{setBrand({
+      ...brand,
+      code:e.target.value
+    })}}
+    required
+      {...params}
+      label="Choose a country"
+      inputProps={{
+        ...params.inputProps,
+        autoComplete: 'new-password', // disable autocomplete and autofill
+      }}
+    />
+  )}
+/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid country.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="9" className="mb-3">
+      <Form.Control type="text" placeholder="Phone" required style={{ "height":"60px" }} onChange={(e)=>{setBrand({
+        ...brand,
+        phone:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid phone number.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" className="mb-3">
+      <Form.Control type="email" placeholder="Email" required onChange={(e)=>{setBrand({
+        ...brand,
+        email:e.target.value
+      })}}/>
+      <Form.Control.Feedback type="invalid">
+        Please provide a valid email.
+      </Form.Control.Feedback>
+    </Form.Group>
+    <Form.Group as={Col} md="12" className="mb-3" align="center">
+      <button className="btn btn-primary">Save & Continue</button>
+    </Form.Group>
+    </Row>
+  </Form>
+</fieldset>
+:
+<div>
+<div className="m-3">
       <br />
       <Form noValidate validated={validated} onSubmit={generateDescription}>
         <label htmlFor="blog">Blog</label>
@@ -122,7 +358,7 @@ export default function Dashboard() {
       </Form>
       <br />
       <div className="m-3">{description}</div>
-    </div>,
+    </div>
     <div className="m-3">
       <br />
       <Form noValidate validated={validated1} onSubmit={generateDescription1}>
@@ -155,6 +391,7 @@ export default function Dashboard() {
       </Form>
       <br />
       <div className="m-3">{description1}</div>
-    </div>,
-  ];
+    </div>
+    </div>
+];  
 }

@@ -177,108 +177,6 @@ function Myheader() {
         </div>
       </div>
     </div>,
-
-    // <div
-    //   className="modal fade"
-    //   id="profile"
-    //   tabIndex={-1}
-    //   role="dialog"
-    //   aria-labelledby="exampleModalLabel"
-    //   aria-hidden="true"
-    // >
-    //   <div className="modal-dialog modal-dialog-centered" role="document">
-    //     <div className="modal-content">
-    //       <div className="modal-header">
-    //         <h5 className="modal-title" id="exampleModalLabel">
-    //           Update Account
-    //         </h5>
-    //         <button
-    //           type="button"
-    //           className="close"
-    //           data-dismiss="modal"
-    //           aria-label="Close"
-    //         >
-    //           <span aria-hidden="true">&times;</span>
-    //         </button>
-    //       </div>
-    //       <Form noValidate onSubmit={updateaccount}>
-    //         <div className="modal-body">
-    //           <Row className="mb-3">
-    //             <Form.Group
-    //               as={Col}
-    //               md="12"
-    //               className="mb-3"
-    //               controlId="validationCustom01"
-    //             >
-    //               <Form.Label>Name</Form.Label>
-    //               <Form.Control
-    //                 name="name"
-    //                 onChange={(e) => {
-    //                   setName(e.target.value);
-    //                   console.log(name);
-    //                 }}
-    //                 required
-    //                 type="text"
-    //                 placeholder="Admin Name"
-    //               />
-    //               <Form.Control.Feedback type="invalid">
-    //                 Please enter a name
-    //               </Form.Control.Feedback>
-    //             </Form.Group>
-    //             <br />
-    //             <Form.Group
-    //               as={Col}
-    //               md="12"
-    //               controlId="validationCustomUsername"
-    //             >
-    //               <Form.Label>Password</Form.Label>
-    //               <Form.Control
-    //                 name="password"
-    //                 onChange={(e) => {
-    //                   setPassword(e.target.value);
-    //                 }}
-    //                 min="6"
-    //                 type="password"
-    //                 placeholder="Password"
-    //               />
-    //             </Form.Group>
-    //             <br />
-    //             <Form.Group
-    //               as={Col}
-    //               md="12"
-    //               className="mt-3"
-    //               controlId="validationCustomUsername"
-    //             >
-    //               <Form.Label>Confirm Password</Form.Label>
-    //               <Form.Control
-    //                 name="confirm"
-    //                 onChange={(e) => {
-    //                   setConfirm(e.target.value);
-    //                 }}
-    //                 min="6"
-    //                 type="password"
-    //                 placeholder="Confirm Password"
-    //               />
-    //             </Form.Group>
-    //           </Row>
-    //         </div>
-    //         <div className="modal-footer">
-    //           <button
-    //             type="button"
-    //             className="btn btn-secondary"
-    //             data-dismiss="modal"
-    //           >
-    //             Ignore
-    //           </button>
-    //           <button type="submit" className="btn btn-primary">
-    //             Save Changes
-    //           </button>
-    //         </div>
-    //       </Form>
-    //     </div>
-    //   </div>
-    // </div>,
-
     <Modal
       show={show}
       size="lg"
@@ -423,6 +321,16 @@ function Myheader() {
                 </li>
               </ul>
             </li>
+            <li className="nav-item">
+                  <NavLink
+                    to="#"
+                    className="nav-link"
+                    activeClassName="nav-link active"
+                    onClick={logout}
+                  >
+                    Logout
+                  </NavLink>
+                </li>
           </ul>
         </nav>
       </div>

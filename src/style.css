@@ -92,7 +92,47 @@ button.tui-image-editor-download-btn
   .word-1 {
     transform: rotate(-90deg);
   }
-.form-control
+.form-control , .MuiInputBase-root , .MuiInputBase-root:hover, .MuiAutocomplete-root, .MuiAutocomplete-root:focus
 {
     border: 2px solid yellow !important;
+}
+.MuiInputLabel-outlined
+{
+    color :black !important
+}
+.input-group.mb-3
+{
+    border-radius: 7px !important;
+}
+.form-control.icon
+{
+    
+    border: 2px solid yellow !important;
+    border-left: none !important;
+    height: 50px;
+    border-radius: 0px 7px 7px 0px !important;
+}
+
+.input-group-text
+{
+    border: 2px solid yellow !important;
+    border-right: none !important;
+    border-radius: 7px 0px 0px 7px !important;
+}
+.btn-login
+{
+    border-radius: 10px !important;
+    height: 50px;
+}
+.or
+{
+    text-align: center !important;
+}
+.btn-google
+{
+    border-radius: 10px !important;
+    height: 50px;
+    text-align: center !important;
+    justify-content: center;
+  align-items: center;
 }
