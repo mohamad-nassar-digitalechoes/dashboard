@@ -112,7 +112,6 @@ export default function Dashboard() {
           body: JSON.stringify({
             model: "image-alpha-001",
             prompt: `${blog} in english`,
-            size: [200, 200]
             // max_tokens: 2048,
             // temperature: 1.0,
             // top_p: 1.0,
