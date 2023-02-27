@@ -117,10 +117,6 @@ function Myheader() {
     }
   }
 
-  useEffect(() => {
-    userInfo();
-    // console.clear();
-  }, []);
 
   return [
     <nav className="main-header navbar navbar-expand navbar-white navbar-light">
@@ -297,7 +293,7 @@ function Myheader() {
               >
                 <i class="fas fa-cogs"></i>
                 <p>
-                  All AI Tools
+                 Copy Generator
                   <i className="fas fa-angle-left right"></i>
                 </p>
               </a>
@@ -317,6 +313,16 @@ function Myheader() {
                     exact
                   >
                     Blog & Article Writing
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    to="/admin/email"
+                    className="nav-link"
+                    activeClassName="nav-link active"
+                    exact
+                  >
+                   Sales Email Script
                   </NavLink>
                 </li>
               </ul>
