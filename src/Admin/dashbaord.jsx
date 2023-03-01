@@ -6,6 +6,7 @@ import "./../dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js";
 import "./../dashboard/dist/js/adminlte.min.js";
 import Spinner from "react-bootstrap/Spinner";
 import Form from "react-bootstrap/Form";
+import {OpenAIApi,Configuration} from "openai"; 
 // import Row from 'react-bootstrap/Row';
 // import Col from 'react-bootstrap/Col';
 // import Countries from "../countries";
@@ -33,6 +34,7 @@ export default function Dashboard() {
   const [brd,setBrd]=useState(false);
   const [valbrand,setValbrand]=useState(false);
   const [blog, setBlog] = useState("");
+  const [img, setImg] = useState("");
   const [article, setArticle] = useState("");
   const [rel, setRel] = useState(false);
   const [description, setDescription] = useState("");
@@ -103,28 +105,29 @@ export default function Dashboard() {
       });
 
 
-        const image=await fetch(Middleware.openaiImageURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${Middleware.openaiKEY}`,
-          },
-          body: JSON.stringify({
-            model: "image-alpha-001",
-            prompt: `${blog} in english`,
-            // max_tokens: 2048,
-            // temperature: 1.0,
-            // top_p: 1.0,
-            // frequency_penalty: 0.5,
-            // presence_penalty: 0.0,
-          }),
-          }).then((response)=>{
-            console.log(response);
-          })
+        // const image=await fetch(Middleware.openaiImageURL, {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Bearer ${process.env.REACT_APP_OPENAIKEY}`,
+        //   },
+        //   body: JSON.stringify({
+        //     model: "image-alpha-001",
+        //     prompt: `i need facebook logo`,
+        //     n:1,
+        //     size:'512x512',
+        //     response_format:"url"
+        //     // max_tokens: 2048,
+        //     // temperature: 1.0,
+        //     // top_p: 1.0,
+        //     // frequency_penalty: 0.5,
+        //     // presence_penalty: 0.0,
+        //   }),
+        //   }).then((response)=>{
+        //     console.log(response);
+        //   })
 
-
-
-      console.log(image);
+       
       const data = await response.json();
 
       setDescription(data.choices[0].text);
@@ -164,7 +167,16 @@ export default function Dashboard() {
           presence_penalty: 0.0,
         }),
       });
-
+      const config=new Configuration({
+        apiKey:process.env.REACT_APP_OPENAIKEY,
+      });
+    const openai=new OpenAIApi(config);
+    const image=await openai.createImage({
+      prompt:`${article}`,
+      n:1,
+      size:'512x512'
+    });
+    setImg(image.data.data[0].url)
       const data = await response.json();
 
       setDescription1(data.choices[0].text);
@@ -424,7 +436,9 @@ return[
         </div>
       </Form>
       <br />
-      <div className="m-3">{description1.split("\n").slice(1).map((line,index)=>(
+      <div className="m-3">
+        <img src={img} alt="" />
+        {description1.split("\n").slice(1).map((line,index)=>(
           <React.Fragment key={index}>
           {line}
           <br />

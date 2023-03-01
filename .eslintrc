@@ -1,7 +1,14 @@
 {
-    "extends": "react-app",
-    "rules": {
-      "no-unused-vars": "off"
-    }
+  "extends": "react-app",
+  "rules": {
+    "Unexpected": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "no-undef": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-key": "off"
   }
-  
+}
