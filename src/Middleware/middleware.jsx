@@ -7,7 +7,7 @@ class Middleware extends Component
     static baseURL="http://localhost:3001/api";
     static openaiURL="https:api.openai.com/v1/completions";
     static openaiImageURL=`https://api.openai.com/v1/images/generations`;
-    static openaiKEY="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";
+    static openaiKEY="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";
     static header={
         "admin-token":
           localStorage.getItem("admin-token") ||
