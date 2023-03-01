@@ -168,7 +168,7 @@ export default function Dashboard() {
         }),
       });
       const config=new Configuration({
-        apiKey:process.env.REACT_APP_OPENAIKEY,
+        apiKey:Middleware.openaiKEY,
       });
     const openai=new OpenAIApi(config);
     const image=await openai.createImage({
