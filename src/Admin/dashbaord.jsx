@@ -440,7 +440,7 @@ return[
         <img src={img} alt="" />
         {description1.split("\n").slice(1).map((line,index)=>(
           <React.Fragment key={index}>
-          {line}
+          <div dangerouslySetInnerHTML={{ __html: htmlContent }}>{line}</div>
           <br />
         </React.Fragment>
         
